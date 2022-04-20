@@ -2,6 +2,7 @@ package com.sip.ams.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import com.sip.ams.entities.Article;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -99,4 +100,19 @@ public class ProviderController {
     	return"redirect:list";
     	
     }
+    
+    @GetMapping("show/{id}")
+	public String showProvider(@PathVariable("id") long id, Model model) {
+		Provider provider = providerRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid provider Id:" + id));
+		
+		List<Article> articles = providerRepository.findArticlesByProvider(id);
+		for (Article a : articles)
+			System.out.println("Article = " + a.getLabel());
+		
+		model.addAttribute("articles", articles);
+		model.addAttribute("provider", provider);
+		return "provider/showProvider";
+	}
+
 }
