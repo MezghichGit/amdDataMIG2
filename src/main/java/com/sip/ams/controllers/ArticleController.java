@@ -34,8 +34,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/article/")
 public class ArticleController {
 	
-	public static String uploadDirectory = System.getProperty("user.dir")+"/src/main/resources/static/uploads";
-	
+	//public static String uploadDirectory = System.getProperty("user.dir")+"/src/main/resources/static/uploads";
+	//public static String uploadDirectory ="http://127.0.0.1:8181/uploads";
+	public static String uploadDirectory ="C:\\Program Files\\Apache Software Foundation\\Tomcat 8.5_TomcatMI\\webapps\\uploads";
 	private final ArticleRepository articleRepository;
 	private final ProviderRepository providerRepository;
     @Autowired
